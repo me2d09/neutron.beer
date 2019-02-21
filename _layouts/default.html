@@ -1,0 +1,90 @@
+---
+layout: master
+bodyclass: citypage
+---
+<div class="container">
+    <img src="/assets/images/logo.png" />
+
+    <div id="cityinfo">
+        {{ content }}
+    </div>
+
+    {% assign event = site.events | last %}
+
+    {% if event.venue %}
+        <div id="map" style="height: 350px"
+            data-src="/assets/venues/{{event.venue}}.json"
+            data-zoom="16"
+            data-lat="{{event.venue-lat}}"
+            data-lng="{{event.venue-lon}}"
+        >
+        </div>
+    {% endif %}
+
+    <div id="featured-meetup">
+        {% if event.date < site.time %}
+            <h2>{{ page.lastmeetup }}</h2>
+        {% elsif  event.date > site.time %}
+            <h2>{{ page.futuremeetup }}</h2>
+        {% else %}
+            <h2>{{ page.todaymeetup }}</h2>
+        {% endif %}
+
+        {% include event.html event=event is_header_event=true today=site.time %}
+
+    </div>
+
+    {% if page.organizer_info %}
+        <div id="organizer-contacts">
+            <h2>Organizer Contact Info</h2>
+            <ul id="contacts" class="contacts">
+                {% for organizer in page.organizer_info %}
+                    <li>
+                        <em>{{ organizer.name }}</em>
+                        <dl>
+                        {% if organizer.mail %}
+                            <dt>E-mail</dt><dd><a href="mailto:{{ organizer.mail }}">{{ organizer.mail }}</a></dd>
+                        {% endif %}
+                        {% if organizer.phone %}
+                            <dt>Phone</dt><dd>{{ organizer.phone }}</dd>
+                        {% endif %}
+                        {% if organizer.web %}
+                            <dt>Web</dt><dd><a href="{{ organizer.web }}">{{ organizer.web }}</a></dd>
+                        {% endif %}
+                        </dl>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if page.future_events %}
+    <div id="future">
+        <h2>Future dates</h2>
+        <div>
+            Neutron beer is organized roughly every two month with a summer break.
+        </div>
+        <div>
+            That means the following days are likely – but some
+            might be rescheduled, for example to avoid holidays.
+        </div>
+        <ul>
+        {% for fevent in page.future_events %}
+            <li>{{ fevent }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="event-list">
+        <h2>{{ page.history }}</h2>
+        {% assign ordered_events = site.events | sort:"date" | reverse | shift  %}
+        <ul>
+            {% for event in ordered_events %}
+                <li>
+                    {% include event.html event=event is_header_event=false today=site.time %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

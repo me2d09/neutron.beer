@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>{{ page.title }}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ "/assets/favicon.ico" | relative_url }}">
+        <link rel="stylesheet" href="{{ "/assets/third-party/bootstrap.min.css" | relative_url }}">
+        <link rel="stylesheet" href="{{ "/assets/style.css" | relative_url }}">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+        <!-- For Facebook and Twitter: -->
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="{{ page.title }}">
+        <meta property="og:description" content="{{ site.description}}">
+        <meta property="og:url" content="{{ page.url }}">
+        <!-- Additionaly, for Twitter: -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:site" content="@neutronbeer">
+        <meta property="twitter:creator" content="@neutronbeer" />
+    </head>
+    <body class="{{ layout.bodyclass }}">
+      <!--
+        This 'notice' is a temporary thing to advertise something to visitors of the site.
+        Once the advertising period is over, it should be commented out. (Probably not worth
+        deleting as we may need to advertise something in the future again.)
+
+      {% if g.lang_code == 'cs' %}
+      <div class="notice">
+          notice text
+      </div>
+      {% endif %}
+      -->
+
+        <div class="nav-container">
+            <nav class="container">
+                <ul>
+                    <li class="home">
+                        <a href="/">
+                            neutron<span>.beer</span>
+                        </a>
+                    </li>
+                </ul>
+                {{ breadcrumbs }}
+                <!--{% if page.lang == 'cs' %}
+                    <a class="lang_switch" href="/en/">🌎 English, please!</a>
+                {% else %}
+                    <a class="lang_switch" href="/cs/">🌍 Česky, prosím!</a>
+                {% endif %}-->
+            </nav>
+        </div>
+        {{ content }}
+        <footer class="container">
+            {% if page.lang == 'cs' %}
+                <div>
+                    Stránky spravuje <a href="https://cermak.science/">Petr Čermák</a>.
+                    E-maily posílejte na <a href="mailto:cermak&#64;mag.mff.cuni.cz">cermak&#64;mag.mff.cuni.cz</a>, tweetujte na <a href="https://twitter.com/neutronbeer">@neutronbeer</a>.
+                </div>
+                <div>
+                    Tyhle stránky jsou na <a href="http://github.com/me2d09/neutron.beer">Github</a>u. <i>Pull requesty</i> vítány!
+                </div>
+                <div>
+                    Hostováno u <a href="https://rosti.cz">Roští.cz</a>. Děkujeme!
+                </div>
+                <div>
+                    <a href="#">
+                        Podrobnosti o zpracování osobních údajů
+                    </a>
+                </div>
+            {% else %}
+                <div>
+                    Managed by <a href="https://cermak.science/">Petr Čermák</a>.
+                    Send e-mails to <a href="mailto:cermak&#64;mag.mff.cuni.cz">cermak&#64;mag.mff.cuni.cz</a>, tweet to <a href="https://twitter.com/neutronbeer">@neutronbeer</a>.
+                </div>
+                <div>
+                    Fork this site on <a href="http://github.com/me2d09/neutron.beer">Github</a>. Pull requests welcome!
+                </div>
+            {% endif %}
+        </footer>
+        <script>
+        var require = {
+            baseUrl: "/assets/",
+            deps: ["scripts/maps"],
+        };
+    </script>
+    <script async
+            src="/assets/third-party/require.js"
+    ></script>
+    </body>
+</html>
