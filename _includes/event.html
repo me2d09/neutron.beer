@@ -38,6 +38,16 @@
                         <div class="talk-entry
                             {% if talk.is_lightning %}lightning{% endif %}
                         ">
+                        {% if talk.image %}
+                            <span class="talk-image yt">
+                                <img src="{{talk.image}}">
+                                <span class="overlay"></span>
+                            </span>
+                        {% else %}
+                            <span class="talk-image no-img">
+                                <span class="overlay"></span>
+                            </span>
+                        {% endif %}
                             <div class="head">
                                 <em class="talk-title">{{talk.title}}</em>
                                 <ul class="speakers">
@@ -45,9 +55,9 @@
                                         <li>{{speaker.name}}</li>
                                     {% endfor %}
                                 </ul>
-                                {% if talk.description %}
+                                {% if talk.abstract %}
                                     <div class="talk-description">
-                                        {{ talk.description | markdownify }}
+                                        {{ talk.abstract | markdownify }}
                                     </div>
                                 {% endif %}
                             </div>

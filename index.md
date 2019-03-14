@@ -12,7 +12,7 @@ organizer_info:
       phone: 737 202 190
       web: https://cermak.science/
 future_events:
-    - 13. 6. 2019
+    - 20. 6. 2019
     - 5. 9. 2019
     - 7. 11. 2019
 ---

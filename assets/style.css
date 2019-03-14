@@ -752,40 +752,39 @@ body.eventpage .talk-entry {
     position: relative;
 }
 
-.talk-entry .youtube-link {
+.talk-entry .talk-image {
     order: 2;
     display: block;
     position: absolute;
     left: -6em;
     width: 5em;
-    height: 2.8125em;
+    height: 5em;
     margin: 0;
     overflow: hidden;
 }
 
-body.eventpage .talk-entry .youtube-link {
+body.eventpage .talk-entry .talk-image {
     top: 0.35em;
 }
 
-.talk-entry .youtube-link img {
+.talk-entry .talk-image img {
     width: 5em;
     position: absolute;
-    top: -0.45em;
 }
 
-.talk-entry .youtube-link .overlay {
+.talk-entry .talk-image .overlay {
     width: 5em;
-    height: 3em;
+    height: 5em;
     position: absolute;
     background: #EEE;
     opacity: 0.6;
 }
 
-.talk-entry .youtube-link .overlay:hover {
+.talk-entry .talk-image .overlay:hover {
     opacity: 0;
 }
 
-.talk-entry .youtube-link.no-yt {
+.talk-entry .talk-image.no-img {
     background-color: #F4F4F4;
 }
 
@@ -830,13 +829,13 @@ body.eventpage .talk-entry .youtube-link {
     min-height: 2em;
 }
 
-.talk-entry.lightning .youtube-link {
+.talk-entry.lightning .talk-image {
     width: 2.6em;
     height: 1.5em;
     left: -3.6em;
 }
 
-.talk-entry.lightning .youtube-link img {
+.talk-entry.lightning .talk-image img {
     width: 2.6em;
     top: -0.2em;
 }
@@ -857,7 +856,7 @@ body.eventpage .talk-entry .youtube-link {
         left: 0;
     }
 
-    .talk-entry .youtube-link {
+    .talk-entry .talk-image {
         display: none;
     }
 
@@ -963,7 +962,7 @@ body.eventpage .talk-entry .youtube-link {
 
     .eventpage div.nav-container a.lang_switch,
     .eventpage div.container div.edit-on-github,
-    .eventpage div.container div.talk-entry>span.youtube-link,
+    .eventpage div.container div.talk-entry>span.talk-image,
     .eventpage div.container div#map div.leaflet-control-container,
     .eventpage div.container div.other-maps,
     .eventpage footer.container {

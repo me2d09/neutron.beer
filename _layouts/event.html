@@ -69,18 +69,29 @@ bodyclass: eventpage
                 <div class="talk-entry
                     {% if talk.is_lightning %}lightning{% endif %}
                 ">
+                {% if talk.image %}
+                    <span class="talk-image yt">
+                        <img src="{{talk.image}}">
+                        <span class="overlay"></span>
+                    </span>
+                {% else %}
+                    <span class="talk-image no-img">
+                        <span class="overlay"></span>
+                    </span>
+                {% endif %}
                     <div class="head">
                         <h3>{{ talk.title }}</h3>
                         {% if talk.speakers %}
                             <ul class="speakers">
                                 {% for speaker in talk.speakers %}
-                                    <li>{{ speaker.name }}</li>
+                                    <li>{{ speaker.name }}{% if speaker.affil %}, {{ speaker.affil }}{% endif %}</li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
-                        {% if talk.description %}
+                        {% if talk.abstract %}
                             <div class="description">
-                                {{ talk.description }}
+                                {{ talk.abstract | markdownify  }}
+                                {{ talk.description | markdownify  }}
                             </div>
                         {% endif %}
                         {% if talk.links %}
