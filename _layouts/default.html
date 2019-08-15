@@ -69,9 +69,6 @@ bodyclass: citypage
         <h2>{{ page.history }}</h2>
         {% assign ordered_events = site.events | sort:"date" | reverse | shift  %}
         <ul>
-            {% if ordered_events | size  == 0 %}
-                There are not yet any past events.
-            {% endif %}
             {% for event in ordered_events %}
                 <li>
                     {% include event.html event=event is_header_event=false today=site.time %}
