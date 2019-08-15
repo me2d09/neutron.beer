@@ -4,7 +4,7 @@ bodyclass: eventpage
 ---
 <div class="container">
     <div class="edit-on-github">
-        <a href="#">
+        <a href="https://github.com/me2d09/neutron.beer/tree/gh-pages/_events">
             ✎ Edit this event on GitHub</a>
     </div>
     <h1>{{ page.name }}</h1>
@@ -88,10 +88,13 @@ bodyclass: eventpage
                                 {% endfor %}
                             </ul>
                         {% endif %}
-                        {% if talk.abstract %}
+                        {% if talk.description %}
+                            <div class="description">
+                                {{ talk.description | markdownify  }}
+                            </div>
+                        {% elsif talk.abstract %}
                             <div class="description">
                                 {{ talk.abstract | markdownify  }}
-                                {{ talk.description | markdownify  }}
                             </div>
                         {% endif %}
                         {% if talk.links %}
