@@ -18,7 +18,7 @@ talks:
         - name: Petr Čermák
   - title: Neutrons for today and tomorrow – The HBS Project for compact accelerator based neutron sources
     abstract: |
-        The Jülich Centre for Neutron Science has started developement of compact accelerator driven neutron source HBS.
+        The Jülich Centre for Neutron Science has started the developement of compact accelerator driven neutron source HBS.
         It should be an efficient and cost effective alternative to current low- and medium-flux reactor and spallation sources.
         Learn more about its construction details and vision for the future neutron landscape in Europe.
     description: |
@@ -53,4 +53,4 @@ talks:
         You can also have one, see [neutron.beer#info-for-speakers](/#info-for-speakers).
     is_lightning: true
 ---
-After the summer break we are going to meetup again. We will discuss about small neutron sources. First will be the talk of Thomas Gutberleth followed with few short "lightning talks" (up to 5 minutes).
+After the summer break we are going to meetup again. We will discuss about small neutron sources. First will be the talk of Thomas Gutberlet followed with few short "lightning talks" (up to 5 minutes).
