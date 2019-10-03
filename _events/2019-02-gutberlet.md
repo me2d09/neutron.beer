@@ -2,15 +2,14 @@
 short_name: ted
 name: 2nd neutron beer
 title: 2nd neutron beer - HBS neutron source by T. Gutberlet
-venue-address: Will be announced
-#venue: ossegg
-#venue-address: OSSEGG Praha, Římská 2135/45, 120 00 Vinohrady
-#venue-lat: 50.076821
-#venue-lon: 14.438621
-#venue-notes: |
-#  OSSEGG is a small brewery in the center of the Prague, just few minutes from the subway station Náměstí Míru. The meeting will take place in the basement.
-#venue-mapylink: https://en.mapy.cz/s/3p9ue
-date: 2019-10-10 17:00
+venue: ossegg
+venue-address: OSSEGG Praha, Římská 2135/45, 120 00 Vinohrady
+venue-lat: 50.076821
+venue-lon: 14.438621
+venue-notes: |
+  OSSEGG is a small brewery in the center of the Prague, just few minutes from the subway station Náměstí Míru. The meeting will take place in the basement, which will be exclusivelly booked for us during talks.
+venue-mapylink: https://en.mapy.cz/s/3p9ue
+date: 2019-10-10 17:30
 talks: 
   - title: Introduction
     is_lightning: true
@@ -53,4 +52,5 @@ talks:
         You can also have one, see [neutron.beer#info-for-speakers](/#info-for-speakers).
     is_lightning: true
 ---
-After the summer break we are going to meetup again. We will discuss about small neutron sources. First will be the talk of Thomas Gutberlet followed with few short "lightning talks" (up to 5 minutes).
+After the summer break we are going to meetup again. We will discuss about small neutron sources. Talks will start at 18:00 sharp so don't be late. The whole basement will be dedicated to our session from 18:00 - 19:00 in order to not be disturbed. 
+First will be the talk of Thomas Gutberlet followed with few short "lightning talks" (up to 5 minutes). 
