@@ -1,0 +1,150 @@
+---
+layout: master
+bodyclass: eventpage
+---
+<div class="container">
+    <div class="edit-on-github">
+        <a href="https://github.com/me2d09/neutron.beer/tree/gh-pages/_events">
+            ✎ Edit this event on GitHub</a>
+    </div>
+    <h1>{{ page.name }}</h1>
+
+    <div class="qrcode"><img src="{{ event | event_qrcode_url }}" /></div>
+
+    {% if g.lang_code == 'cs' %}
+        <div class="event-datetime">
+            Sraz
+            {% if event.date < today %}
+                se konal
+            {% elsif event.date > today %}
+                se bude konat
+            {% else %}
+                se koná
+            {% endif %}
+            {{ event.date.weekday() | dayname(preposition='v') }}
+            {{ event.date.day }}.
+            {{ event.date.month | monthname('genitive') | lower }}
+            {{ event.date.year }}
+            v {{ event.start_time.strftime('%H:%M') }}.
+        </div>
+    {% else %}
+        <div>
+            The meetup
+            {% if page.date < site.time %}
+                took place
+            {% elsif page.date > site.time %}
+                will take place
+            {% else %}
+                takes place
+            {% endif %}
+            on
+            {{ page.date | date: '%A' }}
+            {% assign day = page.date | date: "%-d"  %}
+            {% case day %}
+            {% when '1' or '21' or '31' %}{{ day }}st
+            {% when '2' or '22' %}{{ day }}nd
+            {% when '3' or '23' %}{{ day }}rd
+            {% else %}{{ day }}th
+            {% endcase %}
+            {{ page.date | date: "of %B, %Y" }}
+            at {{ page.date | date: "%H:%M" }}.
+        </div>
+    {% endif %}
+    {% if page.venue %}
+        <div class="event-location">
+            {{ page.venue-address }}
+        </div>
+    {% endif %}
+
+    {% if page.description %}
+        <div id="description">
+            {{ page.description | markdownify  }}
+        </div>
+    {% endif %}
+
+    {% if page.talks %}
+        <div id="talks">
+        <h2>Talks</h2>
+            {% for talk in page.talks %}
+                <div class="talk-entry
+                    {% if talk.is_lightning %}lightning{% endif %}
+                ">
+                {% if talk.image %}
+                    <span class="talk-image yt">
+                        <img src="{{talk.image}}">
+                        <span class="overlay"></span>
+                    </span>
+                {% else %}
+                    <span class="talk-image no-img">
+                        <span class="overlay"></span>
+                    </span>
+                {% endif %}
+                    <div class="head">
+                        <h3>{{ talk.title }}</h3>
+                        {% if talk.speakers %}
+                            <ul class="speakers">
+                                {% for speaker in talk.speakers %}
+                                    <li>{{ speaker.name }}{% if speaker.affil %}, {{ speaker.affil }}{% endif %}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if talk.description %}
+                            <div class="description">
+                                {{ talk.description | markdownify  }}
+                            </div>
+                        {% elsif talk.abstract %}
+                            <div class="description">
+                                {{ talk.abstract | markdownify  }}
+                            </div>
+                        {% endif %}
+                        {% if talk.links %}
+                            {% if talk.is_lightning == false %}
+                                <div class="talk-links-intro">
+                                    {{ tr('Jinde na webu:', 'Elsewhere on the Web:') }}
+                                </div>
+                            {% endif %}
+                            <ul class="talk-links">
+                                {% for link in talk.links %}
+                                    <li>
+                                        {%- if link.kind == 'video' -%}
+                                            Video:
+                                        {%- elsif link.kind == 'slides' -%}
+                                            Slides:
+                                        {%- elsif link.kind == 'notes' -%}
+                                            Notes:
+                                        {%- endif %}
+                                        <a href="{{ link.url }}">{{ link.hostname }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if page.venue %}
+        <h2>Venue</h2>
+
+        <p>{{ page.venue-address }}</p>
+
+        {% if page.venue-notes  %}
+            {{ page.venue-notes | markdownify }}
+        {% endif %}
+
+        <div id="map" style="height: 350px"
+            data-src="/assets/venues/{{page.venue}}.json"
+            data-zoom="16"
+            data-lat="{{page.venue-lat}}"
+            data-lng="{{page.venue-lon}}"
+        >
+        </div>
+
+        <div class="other-maps">
+            {{ tr('Další mapy:', 'Other maps:') }}
+            <a href="{{page.venue-mapylink}}">mapy.cz</a>,
+            <a href="http://www.google.com/maps/place/{{page.venue-lat}},{{page.venue-lon}} ">Google Maps</a>.
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,80 @@
+    <div id="{{event.date}}" class="event-entry
+        {% if event.date < include.today %}
+            past
+        {% elsif event.date > include.today %}
+            future
+        {% else %}
+            today
+        {% endif %}
+    ">
+        <div class="event-common">
+            <div class="event-head">
+                <a href="#{{event.date | date: "%Y-%m-%d"  }}">
+                    <time datetime="{{ event.date }}">
+                        <span class="date">{{event.date | date: '%-d. %-m.'}}</span>
+                        <span class="year">{{event.date | date: '%Y'}}</span> · <span class="time">{{event.date  | date: '%H:%M' }}</span>
+                    </time>
+                </a>
+                <em><a href="{{ event.url}}">{{ event.name}}</a></em>
+
+                {% if event.venue %}
+                    <div class="address">
+                        {{ event.venue-address }}
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if event.content %}
+                <div class="description">
+                    {{ event.content | markdownify  }}
+                </div>
+            {% endif %}
+        </div>
+
+        {% if event.talks %}
+            <ul class="talks">
+                {% for talk in event.talks %}
+                    <li>
+                        <div class="talk-entry
+                            {% if talk.is_lightning %}lightning{% endif %}
+                        ">
+                        {% if talk.image %}
+                            <span class="talk-image yt">
+                                <img src="{{talk.image}}">
+                                <span class="overlay"></span>
+                            </span>
+                        {% else %}
+                            <span class="talk-image no-img">
+                                <span class="overlay"></span>
+                            </span>
+                        {% endif %}
+                            <div class="head">
+                                <em class="talk-title">{{talk.title}}</em>
+                                <ul class="speakers">
+                                    {% for speaker in talk.speakers %}
+                                        <li>{{speaker.name}}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% if talk.abstract %}
+                                    <div class="talk-description">
+                                        {{ talk.abstract | markdownify }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if include.is_header_event %}
+            <div class="venue-notes">
+                <h3>Venue</h3>
+                <div class="address">
+                    {{ event.venue-address }}
+                </div>
+                {{ page.venue-notes  }}
+            </div>
+        {% endif %}
+    </div>
